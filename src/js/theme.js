@@ -27,14 +27,14 @@ if (refs.colorTheme === Storage.FALSE) {
   refs.body.classList.add(Theme.DARK);
   refs.themeSwitchToggle.checked = Storage.TRUE;
 }
-
-function checkedTheme() {
-  const light = refs.body.classList.contains(Theme.LIGHT);
-  localStorage.setItem(Storage.STORAGE_KEY, light);
-}
 function onChange() {
   refs.body.classList.toggle(Theme.LIGHT);
   refs.body.classList.toggle(Theme.DARK);
 
   checkedTheme();
+}
+
+function checkedTheme() {
+  const light = refs.body.classList.contains(Theme.LIGHT);
+  localStorage.setItem(Storage.STORAGE_KEY, light);
 }
