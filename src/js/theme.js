@@ -18,24 +18,23 @@ const refs = {
 refs.body.classList.add(Theme.LIGHT);
 refs.themeSwitchToggle.addEventListener('change', onChange);
 
-if (refs.themeSwitchToggle === Storage.TRUE) {
+if (refs.colorTheme === Storage.TRUE) {
   refs.body.classList.add(Theme.LIGHT);
 }
 
-if (refs.themeSwitchToggle === Storage.FALSE) {
+if (refs.colorTheme === Storage.FALSE) {
   refs.body.classList.remove(Theme.LIGHT);
   refs.body.classList.add(Theme.DARK);
   refs.themeSwitchToggle.checked = Storage.TRUE;
 }
 
-function chekedTheme() {
+function checkedTheme() {
   const light = refs.body.classList.contains(Theme.LIGHT);
   localStorage.setItem(Storage.STORAGE_KEY, light);
 }
-
 function onChange() {
   refs.body.classList.toggle(Theme.LIGHT);
   refs.body.classList.toggle(Theme.DARK);
 
-  return chekedTheme();
+  checkedTheme();
 }
