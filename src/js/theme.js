@@ -1,5 +1,41 @@
+const Theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
+
+const Storage = {
+  STORAGE_KEY: 'color-theme',
+  FALSE: 'false',
+  TRUE: 'true',
+};
+
 const refs = {
-    themeSwitchToggle: document.querySelector('#theme-switch-toggle')
+  body: document.querySelector('body'),
+  themeSwitchToggle: document.querySelector('#theme-switch-toggle'),
+  colorTheme: localStorage.getItem(Storage.STORAGE_KEY),
+};
+
+refs.body.classList.add(Theme.LIGHT);
+refs.themeSwitchToggle.addEventListener('change', onChange);
+
+if (refs.themeSwitchToggle === Storage.TRUE) {
+  refs.body.classList.add(Theme.LIGHT);
 }
 
-console.log(refs.themeSwitchToggle)
+if (refs.themeSwitchToggle === Storage.FALSE) {
+  refs.body.classList.remove(Theme.LIGHT);
+  refs.body.classList.add(Theme.DARK);
+  refs.themeSwitchToggle.checked = Storage.TRUE;
+}
+
+function chekedTheme() {
+  const light = refs.body.classList.contains(Theme.LIGHT);
+  localStorage.setItem(Storage.STORAGE_KEY, light);
+}
+
+function onChange() {
+  refs.body.classList.toggle(Theme.LIGHT);
+  refs.body.classList.toggle(Theme.DARK);
+
+  return chekedTheme();
+}
